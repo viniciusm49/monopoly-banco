@@ -10,6 +10,18 @@ class InicioEscolha extends StatefulWidget {
 class _InicioEscolhaState extends State<InicioEscolha> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+        body: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Center(
+          child: ElevatedButton(
+            onPressed: () {},
+            child: const Text("Novo jogo"),
+          ),
+        ),
+      ],
+    ));
   }
 }

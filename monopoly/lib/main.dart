@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly/pages/InicioEscolha.dart';
+import 'package:provider/provider.dart';
+
+import 'provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: providers,
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -14,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.red,
-        scaffoldBackgroundColor: Color.fromARGB(255, 137, 245, 193),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 137, 245, 193),
       ),
       home: const InicioEscolha(),
     );
