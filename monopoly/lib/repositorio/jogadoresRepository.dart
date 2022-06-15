@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly/models/jogador.dart';
+import 'package:monopoly/models/jogo.dart';
 
-class JogadoresRepositorio with ChangeNotifier {
-  List<Jogador> _jogadores = [];
+class JogosRepositorio with ChangeNotifier {
+  List<Jogo> _jogo = [];
 
-  List<Jogador> get jogadores => _jogadores;
+  List<Jogo> get jogos => _jogo;
 
-  void adicionarJogador(String nome, double saldo) {
-    jogadores.add(Jogador(nome, saldo));
+  void adicionarJogador(Jogo jogo, String nome, double saldo) {
+    jogo.listaJogadores.add(Jogador(nome, saldo));
     notifyListeners();
   }
 
-  void deletarJogador(Jogador jogador) {
-    jogadores.remove(jogador);
+  void deletarJogador(Jogador jogador, Jogo jogo) {
+    jogo.listaJogadores.remove(jogador);
     notifyListeners();
   }
 
   void editarJogador(Jogador jogador, String nome) {
     jogador.nome = nome;
+    notifyListeners();
+  }
+
+  void criarJogo(String nomeJogo, List<Jogador> listaJogadores, double salario,
+      double salarioInicial) {
+    jogos.add(Jogo(nomeJogo, listaJogadores, salario, salarioInicial));
     notifyListeners();
   }
 }
