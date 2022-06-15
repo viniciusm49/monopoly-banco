@@ -28,7 +28,9 @@ class _InicioEscolhaState extends State<InicioEscolha> {
                             const Color.fromARGB(255, 241, 240, 234),
                         title: const Text(
                           'Digite o nome da partida',
-                          style: TextStyle(color: Colors.red),
+                          style: TextStyle(
+                            color: Colors.red,
+                          ),
                         ),
                         children: [
                           Padding(
@@ -41,11 +43,12 @@ class _InicioEscolhaState extends State<InicioEscolha> {
                                 hintText: 'Ex: Jogo dos Amigos',
                                 semanticCounterText: 'Teste',
                               ),
+                              maxLength: 15,
                             ),
                           ),
                           const SizedBox(
-                            height: 12,
-                            width: 12,
+                            height: 10,
+                            width: 10,
                           ),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
@@ -58,7 +61,10 @@ class _InicioEscolhaState extends State<InicioEscolha> {
                                   child: const Text("CANCELAR")),
                               TextButton(
                                   onPressed: () {
-                                    Get.to(() => const CadastroJogo());
+                                    String nome1 = nome.text;
+                                    Get.to(() => CadastroJogo(
+                                          nomeJogo: nome1,
+                                        ));
                                   },
                                   child: const Text("OK")),
                             ],
