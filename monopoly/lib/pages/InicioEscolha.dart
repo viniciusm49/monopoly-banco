@@ -9,8 +9,17 @@ class InicioEscolha extends StatefulWidget {
   State<InicioEscolha> createState() => _InicioEscolhaState();
 }
 
+void enviarNome(String nome) {
+  String nome1 = nome;
+  Get.back();
+  Get.to(() => CadastroJogo(
+        nomeJogo: nome1,
+      ));
+}
+
 class _InicioEscolhaState extends State<InicioEscolha> {
   var nome = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,8 +38,7 @@ class _InicioEscolhaState extends State<InicioEscolha> {
                         title: const Text(
                           'Digite o nome da partida',
                           style: TextStyle(
-                            color: Colors.red,
-                          ),
+                              color: Colors.red, fontWeight: FontWeight.bold),
                         ),
                         children: [
                           Padding(
@@ -43,12 +51,13 @@ class _InicioEscolhaState extends State<InicioEscolha> {
                                 hintText: 'Ex: Jogo dos Amigos',
                                 semanticCounterText: 'Teste',
                               ),
+                              onEditingComplete: () {
+                                enviarNome(nome.text);
+                                nome.clear();
+                              },
                               maxLength: 15,
+                              autofocus: true,
                             ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                            width: 10,
                           ),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
@@ -61,10 +70,8 @@ class _InicioEscolhaState extends State<InicioEscolha> {
                                   child: const Text("CANCELAR")),
                               TextButton(
                                   onPressed: () {
-                                    String nome1 = nome.text;
-                                    Get.to(() => CadastroJogo(
-                                          nomeJogo: nome1,
-                                        ));
+                                    enviarNome(nome.text);
+                                    nome.clear();
                                   },
                                   child: const Text("OK")),
                             ],

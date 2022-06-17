@@ -7,8 +7,8 @@ class JogosRepositorio with ChangeNotifier {
 
   List<Jogo> get jogos => _jogo;
 
-  void adicionarJogador(Jogo jogo, String nome, double saldo) {
-    jogo.listaJogadores.add(Jogador(nome, saldo));
+  void adicionarJogador(Jogo jogo, String nome, double saldo, Color cor) {
+    jogo.listaJogadores.add(Jogador(nome, saldo, cor));
     notifyListeners();
   }
 
