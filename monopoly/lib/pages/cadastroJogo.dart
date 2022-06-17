@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:monopoly/models/jogador.dart';
+import 'package:monopoly/pages/configuracoesJogo.dart';
 import 'package:monopoly/repositorio/repositorioCores.dart';
 
 class CadastroJogo extends StatefulWidget {
@@ -259,7 +260,11 @@ class _CadastroJogoState extends State<CadastroJogo> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(ConfiguracaoPartida(
+                        listaFinal: listaController,
+                        nomeJogo: widget.nomeJogo));
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
