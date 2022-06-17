@@ -203,7 +203,7 @@ class _CadastroJogoState extends State<CadastroJogo> {
                               );
                             },
                             child: Container(
-                              width: MediaQuery.of(context).size.width - 50,
+                              width: MediaQuery.of(context).size.width - 35,
                               height: 60,
                               decoration: BoxDecoration(
                                 borderRadius:
@@ -220,8 +220,9 @@ class _CadastroJogoState extends State<CadastroJogo> {
                                       maxLines: 2,
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontFamily: 'KabelBd',
-                                        fontSize: 20,
+                                        //fontFamily: 'KabelBd',
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
                                         shadows: const <Shadow>[
                                           Shadow(
                                             offset: Offset(1.0, 1.0),

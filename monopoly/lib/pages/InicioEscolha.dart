@@ -27,7 +27,8 @@ class _InicioEscolhaState extends State<InicioEscolha> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Center(
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: ElevatedButton(
             onPressed: () {
               showDialog(
@@ -79,7 +80,20 @@ class _InicioEscolhaState extends State<InicioEscolha> {
                         ],
                       ));
             },
-            child: const Text("Novo jogo"),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    "Novo jogo",
+                    style: TextStyle(
+                      fontSize: 35,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ],
