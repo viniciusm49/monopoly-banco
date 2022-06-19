@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
+import 'package:monopoly/models/jogo.dart';
+import 'package:monopoly/repositorio/jogadoresRepository.dart';
+import 'package:provider/provider.dart';
 
 import '../models/jogador.dart';
 
@@ -22,6 +24,7 @@ class _ConfiguracaoPartidaState extends State<ConfiguracaoPartida> {
 
   @override
   Widget build(BuildContext context) {
+    JogosRepositorio repositorio = context.watch<JogosRepositorio>();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Configurações da Partida"),
@@ -38,7 +41,7 @@ class _ConfiguracaoPartidaState extends State<ConfiguracaoPartida> {
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: 220,
+                height: 250,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -55,7 +58,7 @@ class _ConfiguracaoPartidaState extends State<ConfiguracaoPartida> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Text(
                         "Saldo Inicial dos Jogadores",
@@ -77,13 +80,15 @@ class _ConfiguracaoPartidaState extends State<ConfiguracaoPartida> {
                         validator: (valorJogador) {
                           if (valorJogador == null || valorJogador.isEmpty) {
                             return 'Digite algum numero';
+                          } else if (!(int.tryParse(valorJogador) != null)) {
+                            return 'Apenas números';
                           }
                           return null;
                         },
                       ),
-                      const SizedBox(height: 30),
+                      const SizedBox(height: 10),
                       const Text(
-                        "Pagamento ao passar pelo Início",
+                        "Pagamento ao Passar pelo Início",
                         style: TextStyle(
                           color: Colors.red,
                           fontWeight: FontWeight.bold,
@@ -98,9 +103,11 @@ class _ConfiguracaoPartidaState extends State<ConfiguracaoPartida> {
                             icon: Icon(Icons.monetization_on_outlined),
                             iconColor: Colors.red),
                         keyboardType: TextInputType.number,
-                        validator: (valorJogador) {
-                          if (valorJogador == null || valorJogador.isEmpty) {
+                        validator: (valorSalario) {
+                          if (valorSalario == null || valorSalario.isEmpty) {
                             return 'Digite algum numero';
+                          } else if (!(int.tryParse(valorSalario) != null)) {
+                            return 'Apenas números';
                           }
                           return null;
                         },
@@ -115,16 +122,33 @@ class _ConfiguracaoPartidaState extends State<ConfiguracaoPartida> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      if (key.currentState!.validate()) {
+                        repositorio.jogos.add(Jogo(
+                            widget.nomeJogo,
+                            widget.listaFinal,
+                            double.parse(valorSalario.text),
+                            double.parse(valorJogador.text)));
+                        print(repositorio.jogos[0].salario);
+                      } else {
+                        Get.rawSnackbar(
+                          duration: const Duration(seconds: 1),
+                          messageText: const Text(
+                            "Valores Invalidos",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        );
+                      }
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: const [
                         Padding(
-                          padding: EdgeInsets.all(12.0),
+                          padding: EdgeInsets.all(10.0),
                           child: Text(
                             "Começar",
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 22,
                             ),
                           ),
                         ),

@@ -18,6 +18,7 @@ class _CadastroJogoState extends State<CadastroJogo> {
   List<Jogador> listaController = [];
   var coresJogadores = CoresRepositorio();
   var nomeJogador = TextEditingController();
+  bool botaoProximo = true;
 
   void adicionarJogador(String nomeJogador) {
     final _random = Random();
@@ -261,11 +262,13 @@ class _CadastroJogoState extends State<CadastroJogo> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
-                  onPressed: () {
-                    Get.to(ConfiguracaoPartida(
-                        listaFinal: listaController,
-                        nomeJogo: widget.nomeJogo));
-                  },
+                  onPressed: listaController.length > 1
+                      ? () {
+                          Get.to(() => ConfiguracaoPartida(
+                              listaFinal: listaController,
+                              nomeJogo: widget.nomeJogo));
+                        }
+                      : null,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
