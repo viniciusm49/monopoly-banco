@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:monopoly/models/jogo.dart';
+import 'package:monopoly/pages/homeJogo.dart';
 import 'package:monopoly/repositorio/jogadoresRepository.dart';
 import 'package:provider/provider.dart';
 
@@ -129,7 +130,7 @@ class _ConfiguracaoPartidaState extends State<ConfiguracaoPartida> {
                             widget.listaFinal,
                             double.parse(valorSalario.text),
                             double.parse(valorJogador.text)));
-                        print(repositorio.jogos[0].salario);
+                        Get.to(() => HomeJogo());
                       } else {
                         Get.rawSnackbar(
                           duration: const Duration(seconds: 1),
