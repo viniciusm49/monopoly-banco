@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:monopoly/repositorio/jogadoresRepository.dart';
+import 'package:provider/provider.dart';
 
 class HomeJogo extends StatefulWidget {
-  const HomeJogo({Key? key}) : super(key: key);
+  int indexJogo;
+  HomeJogo({Key? key, required this.indexJogo}) : super(key: key);
 
   @override
   State<HomeJogo> createState() => _HomeJogoState();
@@ -12,6 +13,7 @@ class HomeJogo extends StatefulWidget {
 class _HomeJogoState extends State<HomeJogo> {
   @override
   Widget build(BuildContext context) {
+    JogosRepositorio repositorio = context.watch<JogosRepositorio>();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Jogo"),

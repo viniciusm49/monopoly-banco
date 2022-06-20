@@ -130,7 +130,10 @@ class _ConfiguracaoPartidaState extends State<ConfiguracaoPartida> {
                             widget.listaFinal,
                             double.parse(valorSalario.text),
                             double.parse(valorJogador.text)));
-                        Get.to(() => HomeJogo());
+                        int numeroJogo = repositorio.jogos.length - 1;
+                        Get.offAll(() => HomeJogo(
+                              indexJogo: numeroJogo,
+                            ));
                       } else {
                         Get.rawSnackbar(
                           duration: const Duration(seconds: 1),
