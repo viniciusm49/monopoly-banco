@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CoresRepositorio {
   final List<Color> _listaDeCores = [
     Colors.amber,
-    Colors.white,
+    Colors.orange,
     Colors.blue,
     Colors.green,
     Colors.black,

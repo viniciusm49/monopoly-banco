@@ -210,6 +210,15 @@ class _CadastroJogoState extends State<CadastroJogo> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(12)),
                                 color: Colors.red,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 3,
+                                    blurRadius: 3,
+                                    offset: Offset(
+                                        1, 1), // changes position of shadow
+                                  ),
+                                ],
                               ),
                               child: Row(
                                 children: [
