@@ -125,6 +125,9 @@ class _ConfiguracaoPartidaState extends State<ConfiguracaoPartida> {
                 child: ElevatedButton(
                     onPressed: () {
                       if (key.currentState!.validate()) {
+                        for (var ok in widget.listaFinal) {
+                          ok.saldo = double.parse(valorJogador.text);
+                        }
                         repositorio.jogos.add(Jogo(
                             widget.nomeJogo,
                             widget.listaFinal,
