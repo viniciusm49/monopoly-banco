@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:monopoly/pages/InicioEscolha.dart';
+import 'package:monopoly/pages/jogadorPage.dart';
 import 'package:monopoly/repositorio/jogadoresRepository.dart';
 import 'package:provider/provider.dart';
 
@@ -21,7 +22,7 @@ class _HomeJogoState extends State<HomeJogo> {
     Jogo jogoHome = repositorio.jogos[widget.indexJogo];
     return WillPopScope(
       onWillPop: () async {
-        return false;
+        return true;
       },
       child: Scaffold(
         body: Column(
@@ -30,15 +31,25 @@ class _HomeJogoState extends State<HomeJogo> {
               decoration: BoxDecoration(color: Colors.red, boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.5),
-                  spreadRadius: 3,
+                  spreadRadius: 1,
                   blurRadius: 9,
                   offset: const Offset(1, 1),
                 ),
               ]),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  IconButton(
+                      onPressed: () {
+                        Get.off(() => const InicioEscolha());
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back,
+                        size: 40,
+                        color: Colors.white,
+                      )),
                   const SizedBox(
-                    height: 50,
+                    height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -132,7 +143,10 @@ class _HomeJogoState extends State<HomeJogo> {
                       child: Column(
                         children: [
                           InkWell(
-                            onLongPress: () {},
+                            onTap: () {
+                              Get.to(() => JogadorPage(
+                                  jogador: jogoHome.listaJogadores[index]));
+                            },
                             child: Container(
                               width: MediaQuery.of(context).size.width - 35,
                               height: 60,
