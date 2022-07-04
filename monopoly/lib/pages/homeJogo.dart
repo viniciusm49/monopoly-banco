@@ -145,7 +145,9 @@ class _HomeJogoState extends State<HomeJogo> {
                           InkWell(
                             onTap: () {
                               Get.to(() => JogadorPage(
-                                  jogador: jogoHome.listaJogadores[index]));
+                                    jogador: jogoHome.listaJogadores[index],
+                                    jogo: jogoHome,
+                                  ));
                             },
                             child: Container(
                               width: MediaQuery.of(context).size.width - 35,
@@ -156,9 +158,9 @@ class _HomeJogoState extends State<HomeJogo> {
                                 color: jogoHome.listaJogadores[index].cor,
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
+                                    color: Colors.black.withOpacity(0.3),
                                     spreadRadius: 3,
-                                    blurRadius: 3,
+                                    blurRadius: 5,
                                     offset: const Offset(1, 1),
                                   ),
                                 ],

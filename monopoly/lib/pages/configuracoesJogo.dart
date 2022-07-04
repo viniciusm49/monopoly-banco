@@ -59,7 +59,7 @@ class _ConfiguracaoPartidaState extends State<ConfiguracaoPartida> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
                         "Saldo Inicial dos Jogadores",
