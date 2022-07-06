@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:monopoly/models/jogador.dart';
-import 'package:monopoly/pages/homeJogo.dart';
 import 'package:provider/provider.dart';
 import '../models/jogo.dart';
 import '../repositorio/jogadoresRepository.dart';

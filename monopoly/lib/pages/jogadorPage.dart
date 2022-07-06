@@ -17,6 +17,7 @@ class JogadorPage extends StatefulWidget {
 }
 
 class _JogadorPageState extends State<JogadorPage> {
+  final valor = TextEditingController();
   @override
   Widget build(BuildContext context) {
     JogosRepositorio repositorio = context.watch<JogosRepositorio>();
@@ -103,7 +104,93 @@ class _JogadorPageState extends State<JogadorPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  showModalBottomSheet<void>(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return Container(
+                          height: 200,
+                          color: Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  "Qual valor?",
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 18,
+                                ),
+                                TextField(
+                                  cursorColor: Colors.black,
+                                  controller: valor,
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    labelText: 'Valor a receber do banco',
+                                    hintText: 'Digite o valor',
+                                    semanticCounterText: 'Teste',
+                                  ),
+                                  autofocus: true,
+                                  keyboardType: TextInputType.number,
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    final valorPassado =
+                                        double.tryParse(valor.text);
+                                    if (valorPassado != null) {
+                                      repositorio.receberBanco(
+                                          widget.jogador, valorPassado);
+                                      valor.clear();
+                                      Get.back();
+                                      Get.back();
+                                      Get.snackbar("Tá Pago",
+                                          "$valorPassado foi recebido por ${widget.jogador.nome}",
+                                          backgroundColor: Colors.white,
+                                          snackPosition: SnackPosition.BOTTOM);
+                                    } else {
+                                      Get.rawSnackbar(
+                                          title: "Erro",
+                                          messageText: const Text(
+                                            "Valor invalido",
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ));
+                                    }
+                                  },
+                                  // ignore: sort_child_properties_last
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: const [
+                                        Text(
+                                          "Receber",
+                                          style: TextStyle(
+                                            fontSize: 25,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.black,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+                      });
+                },
                 child: Container(
                   height: 150,
                   width: 150,
@@ -181,8 +268,10 @@ class _JogadorPageState extends State<JogadorPage> {
           ),
           InkWell(
             onTap: () {
-              repositorio.receberSalario(widget.jogador, widget.jogo);
               Get.back();
+              Get.rawSnackbar(
+                  message: "Salário pago com sucesso!", title: "Tá na conta");
+              repositorio.receberSalario(widget.jogador, widget.jogo);
             },
             child: Container(
               width: 320,

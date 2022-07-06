@@ -46,4 +46,9 @@ class JogosRepositorio with ChangeNotifier {
     }
     notifyListeners();
   }
+
+  void receberBanco(Jogador jogador, double valor) {
+    jogador.saldo += valor;
+    notifyListeners();
+  }
 }
