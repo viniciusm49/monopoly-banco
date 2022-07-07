@@ -230,8 +230,8 @@ class _TranferenciaPageState extends State<TranferenciaPage> {
                                     if (valorPassado != null) {
                                       if (valorPassado <=
                                           widget.jogador.saldo) {
-                                        repositorio.pagarBanco(
-                                            widget.jogador, valorPassado);
+                                        repositorio.pagarBanco(widget.jogador,
+                                            valorPassado, widget.jogo);
                                         valor.clear();
                                         Get.back();
                                         Get.back();
@@ -390,7 +390,8 @@ class _TranferenciaPageState extends State<TranferenciaPage> {
                                                         widget.jogo
                                                                 .listaJogadores[
                                                             index],
-                                                        valorPassado);
+                                                        valorPassado,
+                                                        widget.jogo);
                                                 valor.clear();
                                                 Get.back();
                                                 Get.back();

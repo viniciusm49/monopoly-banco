@@ -5,6 +5,7 @@ class Jogo {
   List<Jogador> listaJogadores;
   double salario;
   double salarioInicial;
+  List<String> historico = [];
 
   Jogo(this.nomeJogo, this.listaJogadores, this.salario, this.salarioInicial);
 }

@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:monopoly/pages/InicioEscolha.dart';
@@ -16,6 +17,63 @@ class HomeJogo extends StatefulWidget {
 }
 
 class _HomeJogoState extends State<HomeJogo> {
+  void jogarDados() {
+    final random = Random();
+    List<String> imagensDado = [
+      "assets/images/1.png",
+      "assets/images/2.png",
+      "assets/images/3.png",
+      "assets/images/4.png",
+      "assets/images/5.png",
+      "assets/images/6.png",
+    ];
+    int dado1 = random.nextInt(6);
+    int dado2 = random.nextInt(6);
+    showModalBottomSheet<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            height: 200,
+            color: Colors.white,
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 35,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(imagensDado[dado1]),
+                    const SizedBox(
+                      width: 35,
+                    ),
+                    Image.asset(imagensDado[dado2]),
+                  ],
+                ),
+                Text(
+                  "${dado1 + dado2 + 2}",
+                  style: const TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
+  }
+
+  void mostraHistorico() {
+    showModalBottomSheet<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            height: 400,
+            color: Colors.white,
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     JogosRepositorio repositorio = context.watch<JogosRepositorio>();
@@ -54,73 +112,83 @@ class _HomeJogoState extends State<HomeJogo> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        height: 90,
-                        width: 90,
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black,
-                              spreadRadius: 1,
-                              blurRadius: 6,
-                              offset:
-                                  Offset(1, 1), // changes position of shadow
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Icon(
-                              Icons.history,
-                              size: 40,
-                              color: Colors.red,
-                            ),
-                            Text(
-                              "Histórico",
-                              style: TextStyle(
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
+                      InkWell(
+                        onTap: () {
+                          mostraHistorico();
+                        },
+                        child: Container(
+                          height: 90,
+                          width: 90,
+                          decoration: const BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black,
+                                spreadRadius: 1,
+                                blurRadius: 6,
+                                offset:
+                                    Offset(1, 1), // changes position of shadow
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Icon(
+                                Icons.history,
+                                size: 40,
+                                color: Colors.red,
+                              ),
+                              Text(
+                                "Histórico",
+                                style: TextStyle(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(
                         width: 50,
                       ),
-                      Container(
-                        height: 90,
-                        width: 90,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black,
-                              spreadRadius: 1,
-                              blurRadius: 6,
-                              offset:
-                                  Offset(1, 1), // changes position of shadow
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Icon(
-                              Icons.play_circle,
-                              size: 40,
-                              color: Colors.red,
-                            ),
-                            Text(
-                              "Jogar Dados",
-                              style: TextStyle(
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
+                      InkWell(
+                        onTap: () {
+                          jogarDados();
+                        },
+                        child: Container(
+                          height: 90,
+                          width: 90,
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black,
+                                spreadRadius: 1,
+                                blurRadius: 6,
+                                offset:
+                                    Offset(1, 1), // changes position of shadow
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Icon(
+                                Icons.play_circle,
+                                size: 40,
+                                color: Colors.red,
+                              ),
+                              Text(
+                                "Jogar Dados",
+                                style: TextStyle(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],

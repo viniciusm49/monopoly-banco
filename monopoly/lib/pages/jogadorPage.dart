@@ -146,8 +146,8 @@ class _JogadorPageState extends State<JogadorPage> {
                                     final valorPassado =
                                         double.tryParse(valor.text);
                                     if (valorPassado != null) {
-                                      repositorio.receberBanco(
-                                          widget.jogador, valorPassado);
+                                      repositorio.receberBanco(widget.jogador,
+                                          valorPassado, widget.jogo);
                                       valor.clear();
                                       Get.back();
                                       Get.back();
