@@ -8,8 +8,9 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'configs/hive_config.dart';
 import 'provider.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await HiveConfig.start();
 
   runApp(
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'Gerente Monopoly',
       theme: ThemeData(
         primarySwatch: Colors.red,
         scaffoldBackgroundColor: const Color.fromARGB(255, 137, 245, 193),

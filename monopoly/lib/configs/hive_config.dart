@@ -4,7 +4,7 @@ import 'package:path_provider/path_provider.dart';
 
 class HiveConfig {
   static start() async {
-    Directory dir = await getApplicationSupportDirectory();
+    Directory dir = await getApplicationDocumentsDirectory();
     await Hive.initFlutter(dir.path);
   }
 }

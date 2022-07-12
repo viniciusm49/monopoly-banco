@@ -7,13 +7,22 @@ class JogosRepositorio with ChangeNotifier {
   late Box box;
   List<Jogo> _jogo = [];
 
+  JogosRepositorio() {
+    _startRepository();
+  }
+  _startRepository() async {
+    await _startBox();
+    await teste();
+  }
+
   Future<void> _startBox() async {
     box = await Hive.openBox('jogos');
   }
 
   List<Jogo> get jogos => _jogo;
-  void teste() {
-    print(box.get('teste'));
+
+  teste() async {
+    await box.put('teste', 10);
   }
 
   void criarJogo(String nomeJogo, List<Jogador> listaJogadores, double salario,
