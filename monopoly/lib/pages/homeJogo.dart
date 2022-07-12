@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:monopoly/pages/InicioEscolha.dart';
@@ -63,13 +64,51 @@ class _HomeJogoState extends State<HomeJogo> {
         });
   }
 
-  void mostraHistorico() {
+  void mostraHistorico(Jogo jogo) {
     showModalBottomSheet<void>(
         context: context,
         builder: (BuildContext context) {
           return Container(
-            height: 400,
+            height: 600,
             color: Colors.white,
+            child: ListView.builder(
+                itemCount: jogo.historico.length,
+                itemBuilder: (context, int index) {
+                  List<String> lista = jogo.historico.reversed.toList();
+                  return Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Container(
+                      height: 80,
+                      decoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
+                          color: Colors.red,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.5),
+                              spreadRadius: 1,
+                              blurRadius: 9,
+                              offset: const Offset(1, 1),
+                            ),
+                          ]),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            lista[index],
+                            style: const TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }),
           );
         });
   }
@@ -114,7 +153,7 @@ class _HomeJogoState extends State<HomeJogo> {
                     children: [
                       InkWell(
                         onTap: () {
-                          mostraHistorico();
+                          mostraHistorico(jogoHome);
                         },
                         child: Container(
                           height: 90,

@@ -270,7 +270,9 @@ class _JogadorPageState extends State<JogadorPage> {
             onTap: () {
               Get.back();
               Get.rawSnackbar(
-                  message: "Salário pago com sucesso!", title: "Tá na conta");
+                  animationDuration: const Duration(seconds: 1),
+                  message: "Salário pago com sucesso!",
+                  title: "Tá na conta");
               repositorio.receberSalario(widget.jogador, widget.jogo);
             },
             child: Container(
