@@ -125,29 +125,29 @@ class _ConfiguracaoPartidaState extends State<ConfiguracaoPartida> {
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
                     onPressed: () {
-                      // if (key.currentState!.validate()) {
-                      //   for (var ok in widget.listaFinal) {
-                      //     ok.saldo = double.parse(valorJogador.text);
-                      //   }
-                      //   repositorio.jogos.add(Jogo(
-                      //       widget.nomeJogo,
-                      //       widget.listaFinal,
-                      //       double.parse(valorSalario.text),
-                      //       double.parse(valorJogador.text)));
-                      //   int numeroJogo = repositorio.jogos.length - 1;
-                      //   Get.offAll(() => HomeJogo(
-                      //         indexJogo: numeroJogo,
-                      //       ));
-                      // } else {
-                      //   Get.rawSnackbar(
-                      //     duration: const Duration(seconds: 1),
-                      //     messageText: const Text(
-                      //       "Valores Invalidos",
-                      //       style: TextStyle(color: Colors.white),
-                      //     ),
-                      //   );
-                      // }
-                      print(repositorio.box.get('teste'));
+                      if (key.currentState!.validate()) {
+                        for (var ok in widget.listaFinal) {
+                          ok.saldo = double.parse(valorJogador.text);
+                        }
+                        repositorio.criarJogo(
+                            widget.nomeJogo,
+                            widget.listaFinal,
+                            double.parse(valorSalario.text),
+                            double.parse(valorJogador.text));
+                        int numeroJogo = repositorio.jogos.length - 1;
+
+                        Get.offAll(() => HomeJogo(
+                              indexJogo: numeroJogo,
+                            ));
+                      } else {
+                        Get.rawSnackbar(
+                          duration: const Duration(seconds: 1),
+                          messageText: const Text(
+                            "Valores Invalidos",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        );
+                      }
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

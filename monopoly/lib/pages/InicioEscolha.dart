@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:monopoly/pages/cadastroJogo.dart';
+import 'package:monopoly/pages/carregarJogos.dart';
+import 'package:monopoly/repositorio/jogadoresRepository.dart';
+import 'package:provider/provider.dart';
 
 class InicioEscolha extends StatefulWidget {
   const InicioEscolha({Key? key}) : super(key: key);
@@ -22,6 +25,7 @@ class _InicioEscolhaState extends State<InicioEscolha> {
 
   @override
   Widget build(BuildContext context) {
+    JogosRepositorio repositorio = context.watch<JogosRepositorio>();
     return Scaffold(
         body: Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -87,6 +91,29 @@ class _InicioEscolhaState extends State<InicioEscolha> {
                   padding: EdgeInsets.all(8.0),
                   child: Text(
                     "Novo jogo",
+                    style: TextStyle(
+                      fontSize: 35,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ElevatedButton(
+            onPressed: () {
+              print(repositorio.box.keys);
+              Get.to(() => const CarregarJogos());
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    "Carregar Jogos",
                     style: TextStyle(
                       fontSize: 35,
                     ),

@@ -2,6 +2,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:monopoly/configs/colorString.dart';
 import 'package:monopoly/models/jogador.dart';
 import 'package:monopoly/pages/configuracoesJogo.dart';
 import 'package:monopoly/repositorio/repositorioCores.dart';
@@ -22,17 +23,21 @@ class _CadastroJogoState extends State<CadastroJogo> {
 
   void adicionarJogador(String nomeJogador) {
     final _random = Random();
+    final color = coresJogadores.cores
+        .removeAt(_random.nextInt(coresJogadores.cores.length));
     listaController.add(Jogador(
-        nomeJogador,
-        0,
-        coresJogadores.cores
-            .removeAt(_random.nextInt(coresJogadores.cores.length))));
+      nomeJogador,
+      0,
+    ));
+    listaController.last.cor = color;
+    listaController.last.colorHex = listaController.last.cor!.toHex();
+    print(listaController.last.colorHex);
     Get.back();
     setState(() {});
   }
 
   void removerJogador(Jogador jogador) {
-    coresJogadores.cores.add(jogador.cor);
+    coresJogadores.cores.add(jogador.cor!);
     listaController.remove(jogador);
     setState(() {});
   }

@@ -1,19 +1,19 @@
 import 'package:hive/hive.dart';
 import 'package:monopoly/models/jogador.dart';
 
-@HiveType(typeId: 0)
+part 'jogo.g.dart';
+
+@HiveType(typeId: 1)
 class Jogo extends HiveObject {
   @HiveField(0)
-  int id = 0;
-  @HiveField(1)
   String nomeJogo = '';
-  @HiveField(2)
+  @HiveField(1)
   List<Jogador> listaJogadores = [];
-  @HiveField(3)
+  @HiveField(2)
   double salario = 0;
-  @HiveField(4)
+  @HiveField(3)
   double salarioInicial = 0;
-  @HiveField(5)
+  @HiveField(4)
   List<String> historico = [];
 
   Jogo(this.nomeJogo, this.listaJogadores, this.salario, this.salarioInicial);
