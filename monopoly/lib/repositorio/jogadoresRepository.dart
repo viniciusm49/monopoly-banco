@@ -82,4 +82,10 @@ class JogosRepositorio with ChangeNotifier {
     await box.put(jogo.nomeJogo, jogo);
     notifyListeners();
   }
+
+  Future<void> excluirJogo(Jogo jogo) async {
+    jogos.remove(jogo);
+    await box.delete(jogo.nomeJogo);
+    notifyListeners();
+  }
 }

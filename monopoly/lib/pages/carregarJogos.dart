@@ -30,6 +30,22 @@ class _CarregarJogosState extends State<CarregarJogos> {
                     child: Column(
                       children: [
                         InkWell(
+                          onLongPress: () {
+                            Get.defaultDialog(
+                              middleText:
+                                  "O jogo ${repositorio.jogos[index].nomeJogo} será removido",
+                              titleStyle: TextStyle(color: Colors.red),
+                              title: "Excluir Jogo?",
+                              confirmTextColor: Colors.white,
+                              onConfirm: () {
+                                repositorio
+                                    .excluirJogo(repositorio.jogos[index]);
+                                Get.back();
+                              },
+                              textCancel: "Cancelar",
+                              onCancel: () {},
+                            );
+                          },
                           onTap: () {
                             Get.offAll(() => HomeJogo(
                                   indexJogo: index,
@@ -51,7 +67,22 @@ class _CarregarJogosState extends State<CarregarJogos> {
                                 ),
                               ],
                             ),
-                            child: Text(repositorio.jogos[index].nomeJogo),
+                            child: Center(
+                                child: Text(
+                              repositorio.jogos[index].nomeJogo.toUpperCase(),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'KabelBd',
+                                fontSize: 26,
+                                shadows: <Shadow>[
+                                  Shadow(
+                                    offset: Offset(1.0, 1.0),
+                                    blurRadius: 8.0,
+                                    color: Color.fromARGB(255, 0, 0, 0),
+                                  ),
+                                ],
+                              ),
+                            )),
                           ),
                         ),
                       ],

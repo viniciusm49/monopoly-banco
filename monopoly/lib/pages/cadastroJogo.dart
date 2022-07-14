@@ -22,18 +22,26 @@ class _CadastroJogoState extends State<CadastroJogo> {
   bool botaoProximo = true;
 
   void adicionarJogador(String nomeJogador) {
-    final _random = Random();
-    final color = coresJogadores.cores
-        .removeAt(_random.nextInt(coresJogadores.cores.length));
-    listaController.add(Jogador(
-      nomeJogador,
-      0,
-    ));
-    listaController.last.cor = color;
-    listaController.last.colorHex = listaController.last.cor!.toHex();
-    print(listaController.last.colorHex);
-    Get.back();
-    setState(() {});
+    if (nomeJogador.isEmpty) {
+      Get.rawSnackbar(
+          messageText: const Text(
+        'Nome não pode está vazio',
+        style: TextStyle(color: Colors.white),
+      ));
+    } else {
+      final random = Random();
+      final color = coresJogadores.cores
+          .removeAt(random.nextInt(coresJogadores.cores.length));
+      listaController.add(Jogador(
+        nomeJogador,
+        0,
+      ));
+      listaController.last.cor = color;
+      listaController.last.colorHex = listaController.last.cor!.toHex();
+      print(listaController.last.colorHex);
+      Get.back();
+      setState(() {});
+    }
   }
 
   void removerJogador(Jogador jogador) {
