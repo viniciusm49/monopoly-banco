@@ -112,13 +112,41 @@ class _HomeJogoState extends State<HomeJogo> {
         });
   }
 
+  Future<bool> _onBackPressed() async {
+    bool chave = true;
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Sair do jogo?'),
+        content: const Text('Você irá voltar para a tela de inicio'),
+        actions: <Widget>[
+          ElevatedButton(
+            onPressed: () {
+              chave = true;
+              Get.back();
+            },
+            child: const Text('Não'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              chave = false;
+              Get.to(() => InicioEscolha());
+            },
+            child: const Text('Sim'),
+          ),
+        ],
+      ),
+    );
+    return chave;
+  }
+
   @override
   Widget build(BuildContext context) {
     JogosRepositorio repositorio = context.watch<JogosRepositorio>();
     Jogo jogoHome = repositorio.jogos[widget.indexJogo];
     return WillPopScope(
       onWillPop: () async {
-        return true;
+        return _onBackPressed();
       },
       child: Scaffold(
         body: Column(
@@ -135,17 +163,17 @@ class _HomeJogoState extends State<HomeJogo> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  IconButton(
-                      onPressed: () {
-                        Get.off(() => const InicioEscolha());
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back,
-                        size: 40,
-                        color: Colors.white,
-                      )),
-                  const SizedBox(
-                    height: 10,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 22),
+                    child: IconButton(
+                        onPressed: () {
+                          Get.off(() => const InicioEscolha());
+                        },
+                        icon: const Icon(
+                          Icons.arrow_back,
+                          size: 40,
+                          color: Colors.white,
+                        )),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -165,8 +193,7 @@ class _HomeJogoState extends State<HomeJogo> {
                                 color: Colors.black,
                                 spreadRadius: 1,
                                 blurRadius: 6,
-                                offset:
-                                    Offset(1, 1), // changes position of shadow
+                                offset: Offset(1, 1),
                               ),
                             ],
                           ),
@@ -206,8 +233,7 @@ class _HomeJogoState extends State<HomeJogo> {
                                 color: Colors.black,
                                 spreadRadius: 1,
                                 blurRadius: 6,
-                                offset:
-                                    Offset(1, 1), // changes position of shadow
+                                offset: Offset(1, 1),
                               ),
                             ],
                           ),

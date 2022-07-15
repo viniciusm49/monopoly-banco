@@ -21,6 +21,9 @@ class _CarregarJogosState extends State<CarregarJogos> {
       ),
       body: Column(
         children: [
+          const SizedBox(
+            height: 20,
+          ),
           Flexible(
             child: ListView.builder(
                 itemCount: repositorio.jogos.length,

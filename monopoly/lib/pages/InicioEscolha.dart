@@ -84,7 +84,7 @@ class _InicioEscolhaState extends State<InicioEscolha> {
           ),
         ),
         const SizedBox(
-          height: 70,
+          height: 110,
         ),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,

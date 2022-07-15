@@ -51,102 +51,108 @@ class _TranferenciaPageState extends State<TranferenciaPage> {
                   showModalBottomSheet<void>(
                       context: context,
                       builder: (BuildContext context) {
-                        return Container(
-                          height: 200,
-                          color: Colors.white,
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Qual valor?",
-                                  style: TextStyle(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 18,
-                                ),
-                                TextField(
-                                  cursorColor: Colors.black,
-                                  controller: valor,
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    labelText: 'Valor a pagar a todos',
-                                    hintText: 'Digite o valor',
-                                    semanticCounterText: 'Teste',
-                                  ),
-                                  autofocus: true,
-                                  keyboardType: TextInputType.number,
-                                ),
-                                const SizedBox(
-                                  height: 8,
-                                ),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    final valorPassado =
-                                        double.tryParse(valor.text);
-                                    if (valorPassado != null) {
-                                      if (valorPassado <=
-                                          widget.jogador.saldo) {
-                                        repositorio.pagarTodos(widget.jogador,
-                                            valorPassado, widget.jogo);
-                                        valor.clear();
-                                        Get.back();
-                                        Get.back();
-                                        Get.back();
-                                        Get.rawSnackbar(
-                                            title: "Tá Pago",
-                                            backgroundColor: Colors.green,
-                                            messageText: Text(
-                                              "\$$valorPassado foram enviados a todos o jogadores",
-                                              style: const TextStyle(
-                                                  color: Colors.white),
-                                            ));
-                                      } else {
-                                        Get.rawSnackbar(
-                                            title: "Sem Saldo",
-                                            messageText: const Text(
-                                              "Saldo insuficiente para essa transação",
-                                              style: TextStyle(
-                                                  color: Colors.white),
-                                            ));
-                                      }
-                                    } else {
-                                      Get.rawSnackbar(
-                                          title: "Erro",
-                                          messageText: const Text(
-                                            "Valor invalido",
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ));
-                                    }
-                                  },
-                                  // ignore: sort_child_properties_last
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: const [
-                                        Text(
-                                          "Pagar",
-                                          style: TextStyle(
-                                            fontSize: 25,
-                                          ),
-                                        ),
-                                      ],
+                        return Column(
+                          children: [
+                            Container(
+                              height: 200,
+                              color: Colors.white,
+                              child: Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Qual valor?",
+                                      style: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Colors.black,
-                                  ),
-                                )
-                              ],
+                                    const SizedBox(
+                                      height: 18,
+                                    ),
+                                    TextField(
+                                      cursorColor: Colors.black,
+                                      controller: valor,
+                                      decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        labelText: 'Valor a pagar a todos',
+                                        hintText: 'Digite o valor',
+                                        semanticCounterText: 'Teste',
+                                      ),
+                                      autofocus: true,
+                                      keyboardType: TextInputType.number,
+                                    ),
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        final valorPassado =
+                                            double.tryParse(valor.text);
+                                        if (valorPassado != null) {
+                                          if (valorPassado <=
+                                              widget.jogador.saldo) {
+                                            repositorio.pagarTodos(
+                                                widget.jogador,
+                                                valorPassado,
+                                                widget.jogo);
+                                            valor.clear();
+                                            Get.back();
+                                            Get.back();
+                                            Get.back();
+                                            Get.rawSnackbar(
+                                                title: "Tá Pago",
+                                                backgroundColor: Colors.green,
+                                                messageText: Text(
+                                                  "\$$valorPassado foram enviados a todos o jogadores",
+                                                  style: const TextStyle(
+                                                      color: Colors.white),
+                                                ));
+                                          } else {
+                                            Get.rawSnackbar(
+                                                title: "Sem Saldo",
+                                                messageText: const Text(
+                                                  "Saldo insuficiente para essa transação",
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ));
+                                          }
+                                        } else {
+                                          Get.rawSnackbar(
+                                              title: "Erro",
+                                              messageText: const Text(
+                                                "Valor invalido",
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ));
+                                        }
+                                      },
+                                      // ignore: sort_child_properties_last
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: const [
+                                            Text(
+                                              "Pagar",
+                                              style: TextStyle(
+                                                fontSize: 25,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                        primary: Colors.black,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
-                          ),
+                          ],
                         );
                       });
                 },
@@ -190,102 +196,108 @@ class _TranferenciaPageState extends State<TranferenciaPage> {
                   showModalBottomSheet<void>(
                       context: context,
                       builder: (BuildContext context) {
-                        return Container(
-                          height: 200,
-                          color: Colors.white,
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Qual valor?",
-                                  style: TextStyle(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 18,
-                                ),
-                                TextField(
-                                  cursorColor: Colors.black,
-                                  controller: valor,
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    labelText: 'Valor a pagar ao banco',
-                                    hintText: 'Digite o valor',
-                                    semanticCounterText: 'Teste',
-                                  ),
-                                  autofocus: true,
-                                  keyboardType: TextInputType.number,
-                                ),
-                                const SizedBox(
-                                  height: 8,
-                                ),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    final valorPassado =
-                                        double.tryParse(valor.text);
-                                    if (valorPassado != null) {
-                                      if (valorPassado <=
-                                          widget.jogador.saldo) {
-                                        repositorio.pagarBanco(widget.jogador,
-                                            valorPassado, widget.jogo);
-                                        valor.clear();
-                                        Get.back();
-                                        Get.back();
-                                        Get.back();
-                                        Get.rawSnackbar(
-                                            backgroundColor: Colors.green,
-                                            title: "Tá Pago",
-                                            messageText: Text(
-                                              "\$$valorPassado foram pagos ao Banco",
-                                              style: const TextStyle(
-                                                  color: Colors.white),
-                                            ));
-                                      } else {
-                                        Get.rawSnackbar(
-                                            title: "Sem Saldo",
-                                            messageText: const Text(
-                                              "Saldo insuficiente para essa transação",
-                                              style: TextStyle(
-                                                  color: Colors.white),
-                                            ));
-                                      }
-                                    } else {
-                                      Get.rawSnackbar(
-                                          title: "Erro",
-                                          messageText: const Text(
-                                            "Valor invalido",
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ));
-                                    }
-                                  },
-                                  // ignore: sort_child_properties_last
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: const [
-                                        Text(
-                                          "Pagar",
-                                          style: TextStyle(
-                                            fontSize: 25,
-                                          ),
-                                        ),
-                                      ],
+                        return Column(
+                          children: [
+                            Container(
+                              height: 200,
+                              color: Colors.white,
+                              child: Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Qual valor?",
+                                      style: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Colors.black,
-                                  ),
-                                )
-                              ],
+                                    const SizedBox(
+                                      height: 18,
+                                    ),
+                                    TextField(
+                                      cursorColor: Colors.black,
+                                      controller: valor,
+                                      decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        labelText: 'Valor a pagar ao banco',
+                                        hintText: 'Digite o valor',
+                                        semanticCounterText: 'Teste',
+                                      ),
+                                      autofocus: true,
+                                      keyboardType: TextInputType.number,
+                                    ),
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        final valorPassado =
+                                            double.tryParse(valor.text);
+                                        if (valorPassado != null) {
+                                          if (valorPassado <=
+                                              widget.jogador.saldo) {
+                                            repositorio.pagarBanco(
+                                                widget.jogador,
+                                                valorPassado,
+                                                widget.jogo);
+                                            valor.clear();
+                                            Get.back();
+                                            Get.back();
+                                            Get.back();
+                                            Get.rawSnackbar(
+                                                backgroundColor: Colors.green,
+                                                title: "Tá Pago",
+                                                messageText: Text(
+                                                  "\$$valorPassado foram pagos ao Banco",
+                                                  style: const TextStyle(
+                                                      color: Colors.white),
+                                                ));
+                                          } else {
+                                            Get.rawSnackbar(
+                                                title: "Sem Saldo",
+                                                messageText: const Text(
+                                                  "Saldo insuficiente para essa transação",
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ));
+                                          }
+                                        } else {
+                                          Get.rawSnackbar(
+                                              title: "Erro",
+                                              messageText: const Text(
+                                                "Valor invalido",
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ));
+                                        }
+                                      },
+                                      // ignore: sort_child_properties_last
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: const [
+                                            Text(
+                                              "Pagar",
+                                              style: TextStyle(
+                                                fontSize: 25,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                        primary: Colors.black,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
-                          ),
+                          ],
                         );
                       });
                 },
@@ -342,111 +354,122 @@ class _TranferenciaPageState extends State<TranferenciaPage> {
                             showModalBottomSheet<void>(
                               context: context,
                               builder: (BuildContext context) {
-                                return Container(
-                                  height: 200,
-                                  color: Colors.white,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(16.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Text(
-                                          "Qual valor?",
-                                          style: TextStyle(
-                                            fontSize: 30,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 18,
-                                        ),
-                                        TextField(
-                                          cursorColor: Colors.black,
-                                          controller: valor,
-                                          decoration: InputDecoration(
-                                            border: const OutlineInputBorder(),
-                                            labelText:
-                                                'Valor a enviar para ${widget.jogo.listaJogadores[index].nome}',
-                                            hintText: 'Digite o valor',
-                                            semanticCounterText: 'Teste',
-                                          ),
-                                          autofocus: true,
-                                          keyboardType: TextInputType.number,
-                                        ),
-                                        const SizedBox(
-                                          height: 8,
-                                        ),
-                                        ElevatedButton(
-                                          onPressed: () {
-                                            final valorPassado =
-                                                double.tryParse(valor.text);
-                                            if (valorPassado != null) {
-                                              if (valorPassado <=
-                                                  widget.jogador.saldo) {
-                                                repositorio
-                                                    .transferenciaJogador(
-                                                        widget.jogador,
-                                                        widget.jogo
-                                                                .listaJogadores[
-                                                            index],
-                                                        valorPassado,
-                                                        widget.jogo);
-                                                valor.clear();
-                                                Get.back();
-                                                Get.back();
-                                                Get.back();
-                                                Get.rawSnackbar(
-                                                    backgroundColor:
-                                                        Colors.green,
-                                                    title: "Tá Pago",
-                                                    messageText: Text(
-                                                      "\$$valorPassado foram enviados a ${widget.jogo.listaJogadores[index].nome}",
-                                                      style: const TextStyle(
-                                                          color: Colors.white),
-                                                    ));
-                                              } else {
-                                                Get.rawSnackbar(
-                                                    title: "Sem Saldo",
-                                                    messageText: const Text(
-                                                      "Saldo insuficiente para essa transação",
-                                                      style: TextStyle(
-                                                          color: Colors.white),
-                                                    ));
-                                              }
-                                            } else {
-                                              Get.rawSnackbar(
-                                                  title: "Erro",
-                                                  messageText: const Text(
-                                                    "Valor invalido",
-                                                    style: TextStyle(
-                                                        color: Colors.white),
-                                                  ));
-                                            }
-                                          },
-                                          // ignore: sort_child_properties_last
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: const [
-                                                Text(
-                                                  "Pagar",
-                                                  style: TextStyle(
-                                                    fontSize: 25,
-                                                  ),
-                                                ),
-                                              ],
+                                return Column(
+                                  children: [
+                                    Container(
+                                      height: 200,
+                                      color: Colors.white,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(16.0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const Text(
+                                              "Qual valor?",
+                                              style: TextStyle(
+                                                fontSize: 30,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
-                                          ),
-                                          style: ElevatedButton.styleFrom(
-                                            primary: Colors.black,
-                                          ),
-                                        )
-                                      ],
+                                            const SizedBox(
+                                              height: 18,
+                                            ),
+                                            TextField(
+                                              cursorColor: Colors.black,
+                                              controller: valor,
+                                              decoration: InputDecoration(
+                                                border:
+                                                    const OutlineInputBorder(),
+                                                labelText:
+                                                    'Valor a enviar para ${widget.jogo.listaJogadores[index].nome}',
+                                                hintText: 'Digite o valor',
+                                                semanticCounterText: 'Teste',
+                                              ),
+                                              autofocus: true,
+                                              keyboardType:
+                                                  TextInputType.number,
+                                            ),
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                final valorPassado =
+                                                    double.tryParse(valor.text);
+                                                if (valorPassado != null) {
+                                                  if (valorPassado <=
+                                                      widget.jogador.saldo) {
+                                                    repositorio
+                                                        .transferenciaJogador(
+                                                            widget.jogador,
+                                                            widget.jogo
+                                                                    .listaJogadores[
+                                                                index],
+                                                            valorPassado,
+                                                            widget.jogo);
+                                                    valor.clear();
+                                                    Get.back();
+                                                    Get.back();
+                                                    Get.back();
+                                                    Get.rawSnackbar(
+                                                        backgroundColor:
+                                                            Colors.green,
+                                                        title: "Tá Pago",
+                                                        messageText: Text(
+                                                          "\$$valorPassado foram enviados a ${widget.jogo.listaJogadores[index].nome}",
+                                                          style:
+                                                              const TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                        ));
+                                                  } else {
+                                                    Get.rawSnackbar(
+                                                        title: "Sem Saldo",
+                                                        messageText: const Text(
+                                                          "Saldo insuficiente para essa transação",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white),
+                                                        ));
+                                                  }
+                                                } else {
+                                                  Get.rawSnackbar(
+                                                      title: "Erro",
+                                                      messageText: const Text(
+                                                        "Valor invalido",
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.white),
+                                                      ));
+                                                }
+                                              },
+                                              // ignore: sort_child_properties_last
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: const [
+                                                    Text(
+                                                      "Pagar",
+                                                      style: TextStyle(
+                                                        fontSize: 25,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              style: ElevatedButton.styleFrom(
+                                                primary: Colors.black,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                  ],
                                 );
                               },
                             );
