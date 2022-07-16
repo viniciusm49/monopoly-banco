@@ -91,7 +91,10 @@ class _TranferenciaPageState extends State<TranferenciaPage> {
                                         final valorPassado =
                                             double.tryParse(valor.text);
                                         if (valorPassado != null) {
-                                          if (valorPassado <=
+                                          if ((valorPassado *
+                                                  (widget.jogo.listaJogadores
+                                                          .length -
+                                                      1)) <=
                                               widget.jogador.saldo) {
                                             repositorio.pagarTodos(
                                                 widget.jogador,
